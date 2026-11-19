@@ -208,18 +208,19 @@
   }
 
   function bindTabs() {
-    const tabs = [
-      { tab: $("tab-extras"), panel: $("panel-extras") },
-      { tab: $("tab-about"), panel: $("panel-about") },
-    ];
-    tabs.forEach(({ tab, panel }) => {
-      tab.addEventListener("click", () => {
-        tabs.forEach((t) => {
-          t.tab.setAttribute("aria-selected", t.tab === tab ? "true" : "false");
-          t.panel.hidden = t.tab !== tab;
-        });
+    const ids = ["board", "prices", "extras", "about"];
+    const tabs = ids.map((id) => ({ id, tab: $("tab-" + id), panel: $("panel-" + id) }));
+    const select = (id) => {
+      tabs.forEach((t) => {
+        t.tab.setAttribute("aria-selected", t.id === id ? "true" : "false");
+        t.panel.hidden = t.id !== id;
       });
-    });
+      try { localStorage.setItem("tal-app:tab", id); } catch (e) {}
+    };
+    tabs.forEach((t) => t.tab.addEventListener("click", () => select(t.id)));
+    let saved = null;
+    try { saved = localStorage.getItem("tal-app:tab"); } catch (e) {}
+    if (saved && ids.includes(saved)) select(saved);
   }
 
   function bindBackup() {
@@ -261,22 +262,67 @@
     $("yearsLabel").textContent = String(state.years);
   }
 
+  function fmtUsd(n) {
+    return "$" + Number(n).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+  function fmtPct(n) {
+    if (n === null || n === undefined || !Number.isFinite(Number(n))) return "אין נתון";
+    const v = Number(n);
+    return (v > 0 ? "▲ +" : v < 0 ? "▼ " : "") + v.toFixed(2) + "%";
+  }
+
+  function renderPrices(data) {
+    const wrap = $("pricesTable");
+    const groups = [
+      { key: "large", title: "המניות הגדולות (התראה מ-3%)" },
+      { key: "small", title: "המניות הקטנות והתנודתיות (התראה מכ-7%)" },
+    ];
+    let html = "";
+    groups.forEach((g) => {
+      const rows = data.quotes.filter((q) => (q.group || "large") === g.key);
+      if (!rows.length) return;
+      html += '<h3 class="gk-h">' + escapeHtml(g.title) + "</h3>";
+      html += '<div class="gk-table-wrap"><table class="gk-table"><thead><tr><th>מניה</th><th style="text-align:end">מחיר</th><th>סוג המחיר</th><th style="text-align:end">יומי</th><th style="text-align:end">5 ימים</th><th style="text-align:end">חודש</th></tr></thead><tbody>';
+      rows.forEach((q) => {
+        const cls = (v) => (v > 0 ? "tone-success" : v < 0 ? "tone-danger" : "");
+        const thr = g.key === "small" ? 7 : 3;
+        const hit = Math.abs(Number(q.changePct1d) || 0) >= thr;
+        html += "<tr><td><b>" + escapeHtml(q.ticker) + "</b>" + (hit ? ' <span class="gk-pill tone-warning">עבר את סף ההתראה</span>' : "") + "</td>" +
+          '<td style="text-align:end">' + (q.source ? '<a href="' + escapeHtml(q.source) + '" target="_blank" rel="noopener">' + fmtUsd(q.price) + "</a>" : fmtUsd(q.price)) + "</td>" +
+          "<td>" + escapeHtml(q.priceTypeLabel || (q.priceType === "intraday" ? "תוך-יומי" : "סגירה")) + "</td>" +
+          '<td style="text-align:end" class="' + cls(q.changePct1d) + '">' + fmtPct(q.changePct1d) + "</td>" +
+          '<td style="text-align:end" class="' + cls(q.changePct5d) + '">' + fmtPct(q.changePct5d) + "</td>" +
+          '<td style="text-align:end" class="' + cls(q.changePct1m) + '">' + fmtPct(q.changePct1m) + "</td></tr>";
+      });
+      html += "</tbody></table></div>";
+    });
+    wrap.innerHTML = html;
+    const src = data.source && data.source.href ? ' מקור: <a href="' + escapeHtml(data.source.href) + '" target="_blank" rel="noopener">' + escapeHtml(data.source.title || data.source.href) + "</a>." : "";
+    $("pricesNote").innerHTML = escapeHtml(data.note || "") + src;
+  }
+
   async function loadMarket() {
     const status = $("marketStatus");
     const note = $("marketNote");
+    const pStatus = $("pricesStatus");
     try {
       const res = await fetch("./data/market.json", { cache: "no-store" });
       if (!res.ok) throw new Error("http");
       const data = await res.json();
       if (!data.asOf || !Array.isArray(data.quotes) || data.quotes.length === 0) {
         status.textContent = "אין עדיין נתוני שוק בקובץ. הבוט יעדכן את data/market.json אחרי סגירת המסחר, בלי מחירי דמה.";
+        pStatus.textContent = status.textContent;
         note.textContent = data.note || "";
       } else {
-        status.textContent = "נתוני שוק נכונים ל-" + data.asOf + " (שעון " + (data.timezone || "ישראל") + ").";
+        const label = data.priceTypeLabel ? " · " + data.priceTypeLabel : "";
+        status.textContent = "נתוני שוק נכונים ל: " + data.asOf + label + ".";
+        pStatus.textContent = "נכון ל: " + data.asOf + label + ". המסחר בארה״ב פתוח בין 16:30 ל-23:00 (שעון ישראל).";
         note.textContent = data.note || "";
+        renderPrices(data);
       }
     } catch (err) {
       status.textContent = "לא הצלחתי לקרוא את קובץ נתוני השוק. אפשר להמשיך להשתמש בהפקדות, הן שמורות במכשיר.";
+      pStatus.textContent = status.textContent;
     }
   }
 

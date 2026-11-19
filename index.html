@@ -8,7 +8,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="לוח המניות">
-  <meta name="description" content="האפליקציה האישית של טל למעקב אחרי הפקדות והגדרות שנשמרות במכשיר.">
+  <meta name="description" content="לוח המניות של טל: התראות, מניות במעקב, תיק, סיכונים ותנועות קצרות. מידע בלבד, לא ייעוץ השקעות.">
   <title>לוח המניות של טל</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
@@ -16,12 +16,12 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="app">
+  <div class="app wide">
     <header class="topbar">
       <img src="./icons/icon-192.png" alt="" width="48" height="48">
       <div>
         <h1>לוח המניות של טל</h1>
-        <p>אפליקציה אישית. מה שמקלידים נשמר במכשיר.</p>
+        <p>כל מה שבנינו בלוח, בטלפון. ההפקדות שלך נשמרות במכשיר.</p>
       </div>
     </header>
 
@@ -31,12 +31,30 @@
     </div>
 
     <nav class="tabs" role="tablist" aria-label="לשוניות">
-      <button type="button" role="tab" id="tab-extras" aria-controls="panel-extras" aria-selected="true">הפקדות נוספות</button>
-      <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false">על האפליקציה</button>
+      <button type="button" role="tab" id="tab-board" aria-controls="panel-board" aria-selected="true">📊 הלוח</button>
+      <button type="button" role="tab" id="tab-prices" aria-controls="panel-prices" aria-selected="false">📈 מחירים</button>
+      <button type="button" role="tab" id="tab-extras" aria-controls="panel-extras" aria-selected="false">💼 ההפקדות שלי</button>
+      <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false">ℹ️ על האפליקציה</button>
     </nav>
 
     <main>
-      <section id="panel-extras" role="tabpanel" aria-labelledby="tab-extras">
+      <section id="panel-board" role="tabpanel" aria-labelledby="tab-board">
+        <div id="board" class="gk"><p class="empty">טוען את הלוח…</p></div>
+        <noscript><p class="empty">כדי לראות את הלוח צריך להפעיל JavaScript.</p></noscript>
+        <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות</p>
+      </section>
+
+      <section id="panel-prices" role="tabpanel" aria-labelledby="tab-prices" hidden>
+        <div class="card">
+          <h2>המחירים האחרונים בלוח</h2>
+          <p class="lede" id="pricesStatus">טוען…</p>
+          <div id="pricesTable"></div>
+          <p class="hint" id="pricesNote"></p>
+        </div>
+        <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות</p>
+      </section>
+
+      <section id="panel-extras" role="tabpanel" aria-labelledby="tab-extras" hidden>
         <div class="hero" aria-live="polite">
           <p class="label">שווי מחושב בסוף התקופה (הנחה, לא תחזית)</p>
           <p class="value" id="heroValue">0 ₪</p>
@@ -101,6 +119,7 @@
           <p class="lede">קו פשוט של השווי המחושב לאורך השנים, בלי קישוטים. אם אין נתונים, הגרף לא מוצג.</p>
           <div id="chartWrap"></div>
         </div>
+        <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות</p>
       </section>
 
       <section id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
@@ -169,11 +188,11 @@
             </ol>
           </div>
         </div>
+        <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות</p>
       </section>
     </main>
-
-    <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות. החישובים כאן הם הנחות, לא תחזית.</p>
   </div>
   <script src="./app.js" defer></script>
+  <script src="./board.js" defer></script>
 </body>
 </html>

@@ -1,11 +1,14 @@
 /* Service worker for לוח המניות של טל
-   App shell: cache-first. Market data: network-first so nightly updates appear. */
-const VERSION = "tal-app-v1";
+   App shell: cache-first. Data + board.js: network-first so nightly updates appear. */
+const VERSION = "tal-app-4908f282de";
 const SHELL = [
   "./",
   "./index.html",
   "./styles.css",
   "./app.js",
+  "./board.js",
+  "./data/market.json",
+  "./data/board.json",
   "./manifest.json",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -34,8 +37,9 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  const isMarket = url.pathname.endsWith("/data/market.json");
-  if (isMarket) {
+  // Data and the board bundle change every night: network first, cache as offline fallback.
+  const isFresh = url.pathname.includes("/data/") || url.pathname.endsWith("/board.js");
+  if (isFresh) {
     event.respondWith(networkFirst(req));
     return;
   }
