@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0C5A32">
+  <meta name="color-scheme" content="light dark">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="לוח המניות">
+  <meta name="description" content="האפליקציה האישית של טל למעקב אחרי הפקדות והגדרות שנשמרות במכשיר.">
+  <title>לוח המניות של טל</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <img src="./icons/icon-192.png" alt="" width="48" height="48">
+      <div>
+        <h1>לוח המניות של טל</h1>
+        <p>אפליקציה אישית. מה שמקלידים נשמר במכשיר.</p>
+      </div>
+    </header>
+
+    <div id="installHint" class="banner" hidden>
+      <strong>להוספה למסך הבית</strong>
+      ב-Chrome: תפריט (שלוש נקודות) ← הוספה למסך הבית או התקנת אפליקציה. כך תקבל אייקון, והנתונים יישארו גם אחרי רענון.
+    </div>
+
+    <nav class="tabs" role="tablist" aria-label="לשוניות">
+      <button type="button" role="tab" id="tab-extras" aria-controls="panel-extras" aria-selected="true">הפקדות נוספות</button>
+      <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="false">על האפליקציה</button>
+    </nav>
+
+    <main>
+      <section id="panel-extras" role="tabpanel" aria-labelledby="tab-extras">
+        <div class="hero" aria-live="polite">
+          <p class="label">שווי מחושב בסוף התקופה (הנחה, לא תחזית)</p>
+          <p class="value" id="heroValue">0 ₪</p>
+          <p class="sub" id="heroSub">הזינו בסיס והפקדות כדי לראות חישוב. בלי מחירי שוק מומצאים.</p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>הבסיס</h2>
+          <p class="lede">ברירת המחדל: 10,000 ₪ עכשיו ו-300 ₪ בחודש, ל-5 שנים. התשואה היא הנחה לחישוב בלבד.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="init">הפקדה ראשונית (₪)</label>
+              <input id="init" name="init" type="number" inputmode="decimal" min="0" step="100" value="10000">
+            </div>
+            <div class="field">
+              <label for="monthly">הפקדה חודשית (₪)</label>
+              <input id="monthly" name="monthly" type="number" inputmode="decimal" min="0" step="50" value="300">
+            </div>
+          </div>
+          <div class="field">
+            <label for="rate">תשואה שנתית משוערת</label>
+            <select id="rate">
+              <option value="4">4% שמרני</option>
+              <option value="7">7% בינוני</option>
+              <option value="10" selected>10% כמו ממוצע היסטורי של מדד רחב</option>
+            </select>
+            <p class="hint">זו הנחה לחישוב, לא תחזית ואין כאן מחירי מניות.</p>
+          </div>
+          <div class="field">
+            <label for="years">מספר שנים: <span id="yearsLabel">5</span></label>
+            <input id="years" type="range" min="1" max="30" step="1" value="5">
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>הפקדות חד-פעמיות</h2>
+          <p class="lede">למשל בונוס או מענק. חודש 0 = היום, 12 = בעוד שנה. ההערה היא רשות.</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="newAmt">סכום (₪)</label>
+              <input id="newAmt" type="number" inputmode="decimal" min="0" step="100" value="">
+            </div>
+            <div class="field">
+              <label for="newMonth">בעוד כמה חודשים</label>
+              <input id="newMonth" type="number" inputmode="numeric" min="0" step="1" value="">
+            </div>
+          </div>
+          <div class="field">
+            <label for="newNote">הערה (רשות)</label>
+            <input id="newNote" type="text" maxlength="80" autocomplete="off" value="">
+            <p class="hint">למשל: בונוס דצמבר. השדה הזה לא חובה.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-primary" id="addBtn">הוספה ושמירה במכשיר</button>
+          </div>
+          <p class="status" id="saveStatus" role="status"></p>
+          <ul class="list" id="depList"></ul>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>גרף החישוב</h2>
+          <p class="lede">קו פשוט של השווי המחושב לאורך השנים, בלי קישוטים. אם אין נתונים, הגרף לא מוצג.</p>
+          <div id="chartWrap"></div>
+        </div>
+      </section>
+
+      <section id="panel-about" role="tabpanel" aria-labelledby="tab-about" hidden>
+        <div class="card">
+          <h2>נתוני שוק</h2>
+          <p class="lede" id="marketStatus">טוען את קובץ הנתונים…</p>
+          <p id="marketNote"></p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>גיבוי במכשיר</h2>
+          <p class="lede">ההפקדות נשמרות רק בטלפון הזה. כדאי לייצא עותק מדי פעם. ייבוא מחליף את הנתונים השמורים.</p>
+          <div class="actions">
+            <button type="button" class="btn btn-quiet" id="exportBtn">ייצוא לקובץ</button>
+            <button type="button" class="btn btn-quiet" id="importBtn">ייבוא מקובץ</button>
+            <input id="importFile" type="file" accept="application/json,.json" hidden>
+          </div>
+          <p class="status" id="backupStatus" role="status"></p>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+          <h2>למה העיצוב נראה כך</h2>
+          <p class="lede">כל בחירה כאן מבוססת על מחקר, לא על טעם בלבד. הקישורים מובילים למקורות המקוריים.</p>
+
+          <p class="choice"><b>רושם ראשוני תוך כ-50 אלפיות השנייה.</b> אנשים מעריכים את היופי של מסך כמעט מיד, וההערכה הזו כמעט לא משתנה אם נותנים להם יותר זמן. לכן יש היררכיה ברורה, צבע אחד דומיננטי, ומעט רעש חזותי כבר במבט הראשון. מקור: לינדגארד ועמיתיה, 2006; גם סיכום של Nielsen Norman Group.</p>
+
+          <p class="choice"><b>עיצוב שנראה מסודר נתפס גם כשימושי יותר.</b> זה אפקט האסתטיקה-שימושיות: ממשק מושך גורם למשתמשים לסלוח על תקלות קטנות ולהיות מוכנים יותר לנסות אותו. מקור: Nielsen Norman Group על האפקט, ועל עיצוב אסתטי ומינימליסטי.</p>
+
+          <p class="choice"><b>אמון ומראה מקצועי.</b> עיצוב נקי, בלי שגיאות, עם צבעים עקביים וגילוי נאות ליד המספרים, מחזק אמינות. זה חשוב גם אם בעתיד האפליקציה תהיה מוצר. מקור: Nielsen Norman Group על אמינות בעיצוב.</p>
+
+          <p class="choice"><b>היררכיה, כרטיסים וריווח.</b> המספר החשוב ביותר גדול וברור. כל נושא יושב בכרטיס נפרד, בטור, עם ריווח קבוע לפי רשת של 8 פיקסלים. כך קל לסרוק בטלפון. מקור: Nielsen Norman Group על היררכיה חזותית, על כרטיסים, ועל האפליקציה של Vanguard; גם Material Design.</p>
+
+          <p class="choice"><b>ניגודיות ונגישות.</b> טקסט רגיל עומד ביחס ניגודיות של לפחות 4.5:1, לפי WCAG 2.2. עלייה וירידה לא נשענות על צבע בלבד, אלא גם על מילים וסימן. כפתורים בגובה 48 פיקסלים לפחות. מקור: WCAG 2.2; Material Design על ניגודיות ועל יעד מגע.</p>
+
+          <p class="choice"><b>בהיר כברירת מחדל, כהה לפי המכשיר.</b> במחקר של Nielsen Norman Group, מצב בהיר תומך בדרך כלל טוב יותר בקריאה אצל אנשים עם ראייה רגילה. מצב כהה הוא העדפה אישית, לא חובה. לכן ברירת המחדל בהירה, והאפליקציה עוקבת אחרי הגדרת המערכת למצב כהה. במצב כהה הרקע הוא אפור כהה, לא שחור טהור, לפי הנחיות Material.</p>
+
+          <p class="choice"><b>טפסים שקל להשלים.</b> התווית מעל השדה, השדה לרוחב המסך, בלי תווית שנעלמת בתוך השדה, ושדות רשות מסומנים במפורש. כך עולה הסיכוי להשלים את הפעולה. מקור: מכון Baymard על טפסים במובייל.</p>
+
+          <p class="choice"><b>גרפים נקיים.</b> קו אחד, בלי תלת-ממד ובלי קישוט. רק דיו שמעביר נתון. מקור: Nielsen Norman Group על תרשימים, בעקבות טופטי.</p>
+
+          <p class="choice"><b>עברית מימין לשמאל.</b> כיוון המסמך הוא RTL, היישור מתחיל מימין, והמאפיינים הלוגיים ב-CSS (התחלה/סוף) משקפים את הפריסה. מספרים נשארים משמאל לימין. מקור: מדריך W3C לבינאום ולמסמכים בעברית ובערבית.</p>
+
+          <div class="sources">
+            <p><b>מקורות:</b></p>
+            <ol>
+              <li><a href="https://doi.org/10.1080/01449290500330448" target="_blank" rel="noopener">Lindgaard et al., 2006. Attention web designers: You have 50 milliseconds to make a good first impression!</a></li>
+              <li><a href="https://www.nngroup.com/articles/first-impressions-human-automaticity/" target="_blank" rel="noopener">Nielsen Norman Group: First Impressions Matter</a></li>
+              <li><a href="https://www.nngroup.com/articles/aesthetic-usability-effect/" target="_blank" rel="noopener">Nielsen Norman Group: The Aesthetic-Usability Effect</a></li>
+              <li><a href="https://www.nngroup.com/articles/aesthetic-minimalist-design/" target="_blank" rel="noopener">Nielsen Norman Group: Aesthetic and Minimalist Design</a></li>
+              <li><a href="https://www.nngroup.com/articles/why-does-design-look-good/" target="_blank" rel="noopener">Nielsen Norman Group: Why Does a Design Look Good?</a></li>
+              <li><a href="https://www.nngroup.com/articles/trustworthy-design/" target="_blank" rel="noopener">Nielsen Norman Group: Trustworthiness in Web Design</a></li>
+              <li><a href="https://www.nngroup.com/articles/vanguard-mobile-app/" target="_blank" rel="noopener">Nielsen Norman Group: Prioritizing User Needs, Vanguard Mobile App</a></li>
+              <li><a href="https://www.nngroup.com/articles/cards-component/" target="_blank" rel="noopener">Nielsen Norman Group: Cards</a></li>
+              <li><a href="https://www.nngroup.com/articles/clutter-charts/" target="_blank" rel="noopener">Nielsen Norman Group: Clutter-Free Charts</a></li>
+              <li><a href="https://www.nngroup.com/articles/dark-mode/" target="_blank" rel="noopener">Nielsen Norman Group: Dark Mode vs. Light Mode</a></li>
+              <li><a href="https://www.nngroup.com/articles/dark-mode-users-issues/" target="_blank" rel="noopener">Nielsen Norman Group: Dark Mode, How Users Think About It</a></li>
+              <li><a href="https://baymard.com/research-articles/mobile-form-usability-label-position" target="_blank" rel="noopener">Baymard Institute: Place Labels Above the Field</a></li>
+              <li><a href="https://baymard.com/research-articles/mobile-checkout" target="_blank" rel="noopener">Baymard Institute: Mobile Checkout Usability</a></li>
+              <li><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">W3C: WCAG 2.2</a></li>
+              <li><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum" target="_blank" rel="noopener">W3C: Understanding Contrast (Minimum)</a></li>
+              <li><a href="https://m3.material.io/foundations/designing/color-contrast" target="_blank" rel="noopener">Material Design 3: Color contrast</a></li>
+              <li><a href="https://design.google/library/material-design-dark-theme" target="_blank" rel="noopener">Google: Material Design’s dark theme</a></li>
+              <li><a href="https://m2.material.io/design/usability/bidirectionality.html" target="_blank" rel="noopener">Material Design: Bidirectionality</a></li>
+              <li><a href="https://www.w3.org/International/tutorials/bidi-xhtml/" target="_blank" rel="noopener">W3C: Creating HTML Pages in Arabic, Hebrew and Other Right-to-left Scripts</a></li>
+              <li><a href="https://www.w3.org/International/questions/qa-html-dir.en" target="_blank" rel="noopener">W3C: Structural markup and right-to-left text in HTML</a></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <p class="disclaimer">מידע בלבד, לא ייעוץ השקעות. החישובים כאן הם הנחות, לא תחזית.</p>
+  </div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
