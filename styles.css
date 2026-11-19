@@ -420,3 +420,6 @@ button { cursor: pointer; }
 .app { overflow-x: clip; }
 .card a { color: var(--brand); }
 @media (prefers-color-scheme: dark) { .card a { color: var(--focus); } }
+/* numbers in tables never break mid-number; the table scrolls sideways instead */
+#board .gk-table td span, #board .gk-table th span { overflow-wrap: normal; }
+#board .gk-table td.num { white-space: nowrap; }

@@ -1,6 +1,6 @@
 /* Service worker for לוח המניות של טל
    App shell: cache-first. Data + board.js: network-first so nightly updates appear. */
-const VERSION = "tal-app-4908f282de";
+const VERSION = "tal-app-47ef1f6667";
 const SHELL = [
   "./",
   "./index.html",

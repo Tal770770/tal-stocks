@@ -1,6 +1,6 @@
 {
  "asOf": "19.11.2026",
- "builtAt": "2026-11-19 19:26 (שעון ישראל)",
+ "builtAt": "2026-11-19 20:42 (שעון ישראל)",
  "timezone": "Asia/Jerusalem",
  "source": "הלוח של טל (Canvas). כל נתון כאן מגיע מהלוח, עם התאריך והמקור שלו.",
  "disclaimer": "מידע בלבד, לא ייעוץ השקעות",
@@ -103,6 +103,10 @@
     "label": "מחשבון יעד"
    },
    {
+    "value": "highret",
+    "label": "🚀 תרחיש תשואה גבוהה"
+   },
+   {
     "value": "risk",
     "label": "ניהול סיכונים"
    },
@@ -190,7 +194,8 @@
     "tabs": [
      "score",
      "models",
-     "goal"
+     "goal",
+     "highret"
     ]
    },
    {
@@ -4983,101 +4988,156 @@
    "ף": "פ",
    "ץ": "צ"
   },
-  "CRIT_UPDATED": "19.11.2026, 13:40 (שעון ישראל)",
-  "CRIT_PRICE_NOTE": "מחירי סגירה רשמיים מ-18.11.2026, 23:00 (שעון ישראל). אלה לא מחירים תוך-יומיים.",
+  "CRIT_UPDATED": "19.11.2026, 20:25 (שעון ישראל)",
+  "CRIT_PRICE_NOTE": "מחירי 19.11.2026 בלשונית הם מחירים תוך-יומיים מסביבות 20:10–20:20 שעון ישראל, כשהמסחר בארה״ב עוד פתוח. מחירי 18.11.2026 הם מחירי סגירה רשמיים.",
   "CRIT_ITEMS": [
    {
     "sev": "red",
-    "ticker": "CBRS",
-    "name": "Cerebras",
-    "what": "המניה ירדה ב-9.63% ב-18.11.2026 ונסגרה ב-94.15 דולר (נפתחה ב-105.22, השפל היה 93.23). הירידה הגיעה אחרי דוח הרבעון השלישי שפורסם ב-12.11.2026: הכנסות GAAP של 210.8 מיליון דולר, והכנסות ליבה של 230.9 מיליון דולר. החברה העלתה את תחזית הכנסות הליבה ל-2026 ל-940 עד 960 מיליון דולר, אבל המשקיעים עדיין מעכלים תוצאות מעורבות, הורדות של יעדי מחיר, וחשש מעיכובים בקיבולת ובמרכזי נתונים.",
-    "why": "CBRS מסומנת כמניה ספקולטיבית. במסלול 10 המניות במשקל שווה היא כ-10% מתיק הנייר, ובמסלול ליבת המדד כ-2%. ירידה חדה ביום אחד היא חלק מהאופי של מניות כאלה, ויכולה להזיז את שווי המסלול השווה יותר ממסלול עם ליבת מדד.",
-    "date": "18.11.2026",
+    "ticker": "AMD",
+    "name": "AMD",
+    "what": "ב-19.11.2026 פרסמה קרן השורט Hunterbrook שהיא מהמרת על ירידת המניה (פוזיציית שורט), וטענה שיצרנית שרתים סינית שנמצאת ברשימה השחורה של ארה״ב (IEIT) המשיכה לקבל עדכוני קושחה של AMD. AMD מסרה שהטענות מציגות את הנהלים שלה באופן מעוות, ועד כה לא נקבע שהייתה הפרה של חוקי הייצוא. בשעה 20:19 שעון ישראל (מחיר תוך-יומי, המסחר עדיין פתוח) המניה עמדה על 477.78 דולר, ירידה של 9.88% מול סגירת אתמול (530.14 דולר).",
+    "why": "AMD היא מניה גדולה במעקב ובתיק הנייר. זו ירידה חדה ביום אחד בגלל טענות, לא בגלל דוח כספי. כדאי לעקוב אחרי תגובות החברה, הרשויות והאנליסטים בימים הקרובים. זו לא הוראה אוטומטית לקנות או למכור.",
+    "date": "19.11.2026",
     "sources": [
      {
-      "title": "היסטוריית מחירים CBRS, סגירת 18.11.2026",
-      "site": "Yahoo Finance",
-      "href": "https://finance.yahoo.com/quote/CBRS/history/"
+      "title": "AMD יורדת אחרי דוח של קרן שורט",
+      "site": "CNBC",
+      "href": "https://www.cnbc.com/2026/11/19/amd-falls-on-short-seller-report-of-alleged-china-exposure.html"
      },
      {
-      "title": "שיחת הדוח: עיכובים בקיבולת וצמיחה ל-2027",
-      "site": "Yahoo Finance",
-      "href": "https://finance.yahoo.com/technology/ai/articles/cbrs-q3-earnings-call-spotlights-140000357.html"
+      "title": "Hunterbrook מודיעה על שורט ב-AMD",
+      "site": "Investing.com",
+      "href": "https://www.investing.com/news/stock-market-news/short-seller-hunterbrook-shorts-amd-citing-concerns-over-china-exports-5039475"
      },
      {
-      "title": "הודעת התוצאות לרבעון השלישי",
-      "site": "SEC",
-      "href": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026073366/cbrsannouncesfinancialresu.htm"
-     }
-    ]
-   },
-   {
-    "sev": "red",
-    "ticker": "PONY",
-    "name": "Pony AI",
-    "what": "המניה ירדה ב-7.27% ב-18.11.2026 ונסגרה ב-3.70 דולר, אחרי שנפתחה ב-4.36 והגיעה בשיא היום ל-4.53. באותו יום פורסם דוח הרבעון השלישי: ההכנסות עלו ב-75.2% ל-44.6 מיליון דולר, והכנסות שירותי הרובוטקסי עלו ב-165.4% ל-17.8 מיליון דולר. ההפסד הנקי גדל ל-136.3 מיליון דולר, בעיקר בגלל הפסד חשבונאי על ניירות ערך (ירידת שווי, לא בהכרח כסף שיצא מהקופה). בהפסד לפי Non-GAAP חל שיפור: 48.9 מיליון דולר מול 56.8 מיליון דולר בשנה שעברה.",
-    "why": "גם PONY מסומנת כמניה ספקולטיבית, עם אותו משקל בתיק הנייר כמו CBRS. תנודה חדה אחרי דוח, כולל עלייה שנשברה במהלך היום, אופיינית למניה כזו. זה לא אות אוטומטי לקנייה או למכירה.",
-    "date": "18.11.2026",
-    "sources": [
-     {
-      "title": "הודעת התוצאות לרבעון השלישי",
-      "site": "Pony AI IR",
-      "href": "https://ir.pony.ai/news-releases/news-release-details/pony-ai-inc-reports-third-quarter-2026-financial-results-total"
-     },
-     {
-      "title": "היסטוריית מחירים PONY, סגירת 18.11.2026",
-      "site": "StockAnalysis",
-      "href": "https://stockanalysis.com/stocks/pony/history/"
-     },
-     {
-      "title": "סיכום הדוח: הכנסות מעל התחזית והפסד שהתרחב",
-      "site": "Quartz",
-      "href": "https://qz.com/pony-ai-revenue-beat-robotaxi-growth-earnings-111826"
+      "title": "מחיר תוך-יומי AMD, 19.11.2026",
+      "site": "Exa Markets",
+      "href": "https://exa.ai/library/markets/stocks/AMD"
      }
     ]
    },
    {
     "sev": "orange",
-    "ticker": "NVDA",
-    "name": "NVIDIA",
-    "what": "הדוח הרבעוני פורסם ב-17.11.2026 אחרי הסגירה (רבעון שלישי של שנת הכספים 2027). ההכנסות היו 115.8 מיליארד דולר, עלייה של 103% משנה שעברה, מעל קונצנזוס LSEG של כ-109.1 מיליארד דולר. הרווח המתואם למניה היה 2.68 דולר, מול תחזית של כ-2.48 דולר. התחזית לרבעון הבא: הכנסות של 130 מיליארד דולר, פלוס או מינוס 3%, בלי להניח הכנסות מחשוב למרכזי נתונים מסין. אחרי עלייה במסחר שאחרי הסגירה, המניה נסגרה ב-18.11.2026 ב-150.96 דולר, ירידה של 2.89%. זה הדוח הראשון מאז התפטרות המנכ״ל Jensen Huang, בהובלת המנכ״לית הזמנית Colette Kress.",
-    "why": "NVDA היא אחת מחמש המניות הגדולות במעקב, וחברות שבבים אחרות בתיק נוטות לזוז איתה. הירידה ביום שאחרי הדוח, למרות תוצאות מעל התחזית, מראה שהשוק מגיב גם לאי-הוודאות בהנהגה וגם לשולי הרווח החזויים (71%–72% ברבעון הבא, נמוך יותר מהרבעון שהסתיים). תיק הנייר עדיין מתומחר לפי סגירת 17.11.2026, כל עוד לא יתבקש עדכון.",
-    "date": "17–18.11.2026",
+    "ticker": "SPY",
+    "name": "השוק הכללי (S&P 500)",
+    "what": "ב-19.11.2026 השוק בארה״ב ירד בחדות, למרות הנפקה חזקה של Anthropic: לפי Yahoo Finance, ה-S&P 500 וה-Nasdaq ירדו בכ-1.4% והדאו איבד יותר מ-800 נקודות (תוך-יומי). קרן SPY עמדה על 718.77 דולר, ירידה של 1.87% (תוך-יומי, 20:19 שעון ישראל). מניות השבבים פתחו בעלייה והתהפכו לירידה. ברקע: פרוטוקול הפד מאוקטובר (פורסם 18.11) הראה שחברי הוועדה מצפים להעלאות ריבית נוספות, ומ-19.11 נכנסו לתוקף כללים חדשים של משרד המסחר האמריקאי שמחייבים רישיון לייצוא שבבי AI מתקדמים לאינדונזיה, מלזיה, סינגפור, תאילנד וברזיל.",
+    "why": "ירידה רחבה בשוק משפיעה על כל המניות במעקב, וכללי ייצוא השבבים נוגעים ישירות ל-NVDA, AMD, AVGO ו-ASML. ציפייה להעלאות ריבית לוחצת בדרך כלל על מניות צמיחה.",
+    "date": "18–19.11.2026",
     "sources": [
      {
-      "title": "הודעת התוצאות הרשמית",
-      "site": "NVIDIA IR",
-      "href": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/"
-     },
-     {
-      "title": "המניה ירדה אחרי הדוח",
-      "site": "CNBC",
-      "href": "https://www.cnbc.com/2026/11/18/nvidia-stock-earnings.html"
-     },
-     {
-      "title": "סגירה 150.96 דולר, ירידה של 2.89%",
+      "title": "סיכום המסחר החי, 19.11.2026",
       "site": "Yahoo Finance",
-      "href": "https://finance.yahoo.com/markets/stocks/article/nvidia-stock-erases-earnings-pop-as-investors-face-life-after-jensen-huang-173547783.html"
+      "href": "https://finance.yahoo.com/markets/live/stock-market-today-thursday-november-19-dow-sp-500-nasdaq-anthropic-ipo-live-141306032.html"
+     },
+     {
+      "title": "מחיר תוך-יומי SPY",
+      "site": "Exa Markets",
+      "href": "https://exa.ai/library/markets/stocks/SPY"
+     },
+     {
+      "title": "פרוטוקול הפד מאוקטובר 2026",
+      "site": "CNBC",
+      "href": "https://www.cnbc.com/2026/11/18/fed-minutes-october-2026.html"
+     },
+     {
+      "title": "הכלל החדש על גישה מרחוק לשבבים מתקדמים",
+      "site": "Federal Register",
+      "href": "https://www.federalregister.gov/documents/2026/11/19/2026-23529/addressing-remote-access-to-advanced-semiconductors"
+     }
+    ]
+   },
+   {
+    "sev": "orange",
+    "ticker": "CBRS",
+    "name": "Cerebras",
+    "what": "הירידה נמשכת: ב-18.11.2026 המניה ירדה ב-9.63% ונסגרה ב-94.15 דולר, וב-19.11.2026 בשעה 20:19 שעון ישראל (תוך-יומי) היא עמדה על 89.28 דולר, ירידה נוספת של 5.17%. הרקע: דוח הרבעון השלישי מ-12.11.2026, הורדות של יעדי מחיר וחשש מעיכובים בקיבולת ובמרכזי נתונים.",
+    "why": "CBRS מסומנת כמניה ספקולטיבית. במסלול 10 המניות במשקל שווה היא כ-10% מתיק הנייר, ובמסלול ליבת המדד כ-2%. ירידות של כמה ימים ברצף הן חלק מהאופי של מניות כאלה.",
+    "date": "18–19.11.2026",
+    "sources": [
+     {
+      "title": "היסטוריית מחירים CBRS",
+      "site": "Yahoo Finance",
+      "href": "https://finance.yahoo.com/quote/CBRS/history/"
+     },
+     {
+      "title": "מחיר תוך-יומי CBRS",
+      "site": "Exa Markets",
+      "href": "https://exa.ai/library/markets/stocks/CBRS"
+     },
+     {
+      "title": "שיחת הדוח: עיכובים בקיבולת וצמיחה ל-2027",
+      "site": "Yahoo Finance",
+      "href": "https://finance.yahoo.com/technology/ai/articles/cbrs-q3-earnings-call-spotlights-140000357.html"
+     }
+    ]
+   },
+   {
+    "sev": "orange",
+    "ticker": "PONY",
+    "name": "Pony AI",
+    "what": "אחרי הדוח מ-18.11.2026 (הכנסות עלו ב-75.2% ל-44.6 מיליון דולר, הפסד נקי של 136.3 מיליון דולר) והירידה של 7.27% לסגירה של 3.70 דולר, Barclays הורידה את יעד המחיר ל-4 דולר מ-10 דולר והשאירה דירוג Equal Weight. Citi השאירה דירוג Buy. לפי StockAnalysis, ממוצע יעדי האנליסטים הוא 17.33 דולר, בטווח רחב של 7 עד 32.80 דולר.",
+    "why": "PONY מסומנת כמניה ספקולטיבית. פער גדול כל כך בין יעדי האנליסטים מראה כמה אי-ודאות יש סביב החברה. זה לא אות אוטומטי לקנייה או למכירה.",
+    "date": "18–19.11.2026",
+    "sources": [
+     {
+      "title": "Barclays מורידה יעד ל-4 דולר",
+      "site": "TipRanks / The Fly",
+      "href": "https://www.tipranks.com/news/the-fly/pony-ai-price-target-lowered-to-4-from-10-at-barclays-thefly-news"
+     },
+     {
+      "title": "תחזיות ויעדי מחיר PONY",
+      "site": "StockAnalysis",
+      "href": "https://stockanalysis.com/stocks/pony/forecast/"
+     },
+     {
+      "title": "הודעת התוצאות לרבעון השלישי",
+      "site": "Pony AI IR",
+      "href": "https://ir.pony.ai/news-releases/news-release-details/pony-ai-inc-reports-third-quarter-2026-financial-results-total"
      }
     ]
    },
    {
     "sev": "green",
-    "ticker": "AMD",
-    "name": "AMD",
-    "what": "ב-17.11.2026 השלימה AMD את רכישת Taalas, חברה בתחום שבבי הסקה של בינה מלאכותית. ב-18.11.2026 נסגרה המניה ב-530.14 דולר, עלייה של 5.31% מול סגירת 17.11.2026 שעמדה על 503.41 דולר. לפי דיווחים, חלק מהעלייה הגיע גם אחרי דוח NVIDIA.",
-    "why": "AMD היא מניה גדולה במעקב ובתיק הנייר. עלייה ביום אחד אחרי רכישה ודוח של חברה בענף היא מידע חשוב למעקב, אבל לא סיבה לפעול בבהלה.",
-    "date": "17–18.11.2026",
+    "ticker": "NVDA",
+    "name": "NVIDIA",
+    "what": "אחרי הדוח מ-17.11.2026 (הכנסות 115.8 מיליארד דולר, מעל התחזית) המניה ירדה ב-18.11.2026 ב-2.89% לסגירה של 150.96 דולר, וב-19.11.2026 בשעה 20:11 שעון ישראל (תוך-יומי) עמדה על 148.61 דולר, ירידה של 1.56%. Wells Fargo הורידה את יעד המחיר ל-250 דולר מ-300 ו-Morgan Stanley ל-260 מ-267, ושתיהן השאירו דירוג Overweight (חיובי).",
+    "why": "NVDA היא מניה גדולה במעקב, ומניות שבבים אחרות נוטות לזוז איתה. הורדות היעד מתונות והדירוגים נשארו חיוביים, אבל האנליסטים מציינים אי-ודאות בהנהגה, חקירות והגבלות ייצוא.",
+    "date": "17–19.11.2026",
     "sources": [
      {
-      "title": "השלמת רכישת Taalas",
-      "site": "AMD Newsroom",
-      "href": "https://newsroom.amd.com/news/amd-completes-acquisition-taalas-advance-ai-inference-innovation/"
+      "title": "היסטוריית מחירים NVDA",
+      "site": "Yahoo Finance",
+      "href": "https://finance.yahoo.com/quote/NVDA/history/"
      },
      {
-      "title": "היסטוריית מחירים AMD, סגירת 18.11.2026",
-      "site": "StockAnalysis",
-      "href": "https://stockanalysis.com/stocks/amd/history/"
+      "title": "Wells Fargo מורידה יעד מחיר",
+      "site": "Investing.com",
+      "href": "https://www.investing.com/news/analyst-ratings/wells-fargo-cuts-nvidia-stock-price-target-on-supply-chain-focus-93CH-5034889"
+     },
+     {
+      "title": "Morgan Stanley מורידה יעד מחיר",
+      "site": "MarketBeat",
+      "href": "https://www.marketbeat.com/instant-alerts/analyst-nvidia-nasdaq-nvda-stock-gets-price-target-reduction-from-morgan-stanley-2026-11-18/"
+     }
+    ]
+   },
+   {
+    "sev": "green",
+    "ticker": "AVGO",
+    "name": "Broadcom",
+    "what": "ב-19.11.2026 Goldman Sachs הורידה את יעד המחיר ל-460 דולר מ-540 והשאירה דירוג Buy. בשעה 20:19 שעון ישראל (תוך-יומי) המניה עמדה על 347.01 דולר, ירידה של 1.99%. הדוח הבא צפוי ב-9.12.2026 לפי StockAnalysis.",
+    "why": "AVGO היא מניה גדולה במעקב. הורדת יעד עם שמירה על דירוג חיובי היא מידע למעקב, לא סיבה לפעול בבהלה.",
+    "date": "19.11.2026",
+    "sources": [
+     {
+      "title": "Goldman Sachs מורידה יעד ל-460 דולר",
+      "site": "TokenPost",
+      "href": "https://www.tokenpost.com/news/business/61151"
+     },
+     {
+      "title": "מחיר תוך-יומי AVGO",
+      "site": "Exa Markets",
+      "href": "https://exa.ai/library/markets/stocks/AVGO"
      }
     ]
    }
@@ -6392,6 +6452,16 @@
     "העלה יעד, קנייה",
     "$700 (מ-$650)"
    ]
-  ]
+  ],
+  "HR_INIT": 10000,
+  "HR_MONTHLY": 300,
+  "HR_MONTHS": 60,
+  "HR_QUICK": [
+   40,
+   60,
+   80,
+   100
+  ],
+  "HR_SP_AVG": 10.49
  }
 }
